@@ -27,6 +27,7 @@ public class RoverRuckusAutonomous extends LinearOpMode {
     private static final float mmPerInch        = 25.4f;
     private static final float mmFTCFieldWidth  = (12*6) * mmPerInch;       // the width of the FTC field (from the center point to the outer panels)
     private static final float mmTargetHeight   = (6) * mmPerInch;          // the height of the center of the target image above the floor
+    private PowerSurgeRobot _robot;
 
     // Select which camera you want use.  The FRONT camera is the one on the same side as the screen.
     // Valid choices are:  BACK or FRONT
@@ -47,7 +48,11 @@ public class RoverRuckusAutonomous extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
-
+        _robot=new PowerSurgeRobot(this);
+        initializeVuforiaSystem();
+        dropFromLander();
+        readVuforiaTargets();
+        sampleMinerals();
 
 
     }
@@ -236,5 +241,9 @@ public class RoverRuckusAutonomous extends LinearOpMode {
             }
             telemetry.update();
         }
+
+    }
+    private void sampleMinerals (){
+        _robot.cheeseBurger(18, 18, .7);
     }
 }
